@@ -1,192 +1,90 @@
 # challenge-card-game-becode
-new project
-Pimp up the README file:
-Description :
-Installation:
-Usage:masrra 
-(Visuals)
-(Contributors)
-(Timeline):23/02/2022
-(Personal situation):there are three sitiuations: Great ,complete ,correct 
-
-
---------------------------------------------------------------------------------------------
-import random
-class Card(object):
-    def __init__(self, suit, value):
-        self.suit = suit
-        self.value = value
-
-    def show(self):
-        print("{} of {}".format(self.value, self.suit))
-
-
-class Deck(object):
-    def __init__(self):
-        self.cards = []
-        self.build()
-
-    def build(self):
-        for s in ["spades", "Hearts", "Clubs", "Diamonds"]:
-            for v in range(1, 14):  # print("{} of {}".format(v, s))
-                self.cards.append(Card(s, v))
-
-    def show(self):
-        for c in self.cards:
-            c.show()
-    def shuffle(self):
-        for i in range(len(self.cards)-1,0,-1):#print(i)
-            r=random.randint(0,i)
-            self.cards[i],self.cards[r]=self.cards[r],self.cards[i]
-
-    def drawCard(self):
-        return(self.cards.pop())
-
-
-class Player(object):
-   def __init__(self,name):
-     self.name= name
-     self.hand=[]
-   def draw(self,deck):
-     self.hand.append(deck.drawCard())
-     return(self)
-   def showHand(self):
-       for card in self.hand:
-           card.show()
-   def Discard(self):
-       return self.hand.pop()
-
-
-# card=Card("clubs",6)
-# card.show()
-deck = Deck()
-deck.shuffle()
-#deck.build()
-#deck.show()
-FirstPlayer=Player("bob")
-FirstPlayer.draw(deck)
-FirstPlayer.showHand()
-SecondPlayer=Player("Rob")
-SecondPlayer.draw(deck)
-SecondPlayer.showHand()
-SecondPlayer=Player("MYA")
-SecondPlayer.draw(deck)
-SecondPlayer.showHand()
-SecondPlayer=Player("Mas")
-SecondPlayer.draw(deck)
-SecondPlayer.showHand()
-#card=deck.draw()
-#card.show()
-----------------------------------------------------------------------------------
+new project :challenge-card-game
 Repository: challenge-card-game-becode
 Type of Challenge: Consolidation
 Duration: 3 days
 Deadline: 23/02/22 4:30 PM
 Team challenge : solo
-------------------------------------------------------------------------------------------
-import random
 
-player_one_score = 0
-player_Two_score = 0
-player_Three_score = 0
-player_Four_score = 0
-deck=[]
-def populate_deck():
-    for suit in ("Hearts","Diamond","Clubs",'Speeds'):
-        for rank in range(2,15):
-            deck.append((rank,suit))
-def printable_card(card):
-         if card[0]<=10 : rank =str(card[0])
-         if card[0]==11 : rank ="Jack"
-         if card[0] == 12: rank = "Queen"
-         if card[0] == 13: rank = "King"
-         if card[0] == 14: rank = "Ace"
-         fullname=rank +' of '+card[1]
-         return fullname
-def draw_card(player):
-    card=deck[0]
-    deck.remove(deck[0])
-    print(player+' drew the  '+printable_card(card))
-    return card
-#make the deck
-populate_deck()
-#print(deck)
-#shuffle the deck
-random.shuffle(deck)
-#print(deck)
-#every turn
-while True:
- #each player draws card
- print(" Player one :which Card Do you want to play?!")
- player_one_card=draw_card("player one")
- print(" Player Two :which Card Do you want to play?!")
- player_Two_card=draw_card("player Two")
- print(" Player Three :which Card Do you want to play?!")
- player_Three_card=draw_card("player Three")
- print(" Player Four :which Card Do you want to play?!")
- player_Four_card=draw_card("player Four")
- # compare to see who wins
- if player_one_card[0]>player_Two_card[0]and player_one_card[0]>player_Three_card[0]and player_one_card[0]>player_Four_card[0]:
-     player_one_score+=1
-     winner="player one "
-     player_one_score +=2
- elif player_Two_card[0] > player_one_card[0] and player_Two_card[0] > player_Three_card[0] and player_Two_card[0] > player_Four_card[0]:
-     player_Two_score += 1
-     winner = "player Two "
-     player_Two_score += 2
- elif player_Three_card[0] > player_one_card[0] and player_Three_card[0] > player_Two_card[0] and player_Three_card[0] > player_Four_card[0]:
-     player_Three_score += 1
-     winner = "player Three "
-     #player_Three_score += 2
- elif player_Four_card[0] > player_one_card[0] and player_Four_card[0] > player_Two_card[0] and player_Four_card[0] > player_Three_card[0]:
-     player_Four_score += 1
-     winner = "player Four"
-     #player_Four_score += 2
- else :winner=' No one '
- print(winner +" wins ")
+Description :
 
+I should build card game in Python. I should create deck of cards , and split between the different players and each player plays a card at every turn, until there are 
+The game is working until each player doesn't have any cards left.
+The game generates all the cards.
+The game distributes all 
+Once you have the basis of a card game, you can go ahead and make a real card game from 
+Make the game interactive, at each turn, ask the player which card he/her wants to play.
+Create game-over conditions and add the possibility in the game to end because of the aforementioned conditions.
+Add points for each player if the card is the most powerful card played that turn.
+Select a winner out of the players at the end of the game.
 
-#tiebreaker
-#keep score
-#check weather the deck is empty
- if len(deck)==0:
-    print("Game over ")
-    #print("player one: "+str(player_one_score))
+Usage:
 
-    if player_one_score > player_Two_score and player_one_score > player_Three_score and player_one_score > player_Four_score:
-        print('The winner is the First player and he has ' + str(player_one_score) + ' points ')
-    elif player_Two_score > player_one_score and player_Two_score > player_Three_score and player_Two_score > player_Four_score:
-            print('The winner is the Second player and he has ' + str(player_Two_score) + ' points')
-    elif player_Three_score > player_Two_score and player_Three_score > player_one_score and player_Three_score > player_Four_score:
-                print('The winner is the Third player and he has ' + str(player_Three_score) + ' points')
-    elif player_Four_score > player_Two_score and player_Four_score > player_one_score and player_Four_score > player_Three_score:
-             print('The winner is the Fourth player and he has ' + str(player_Three_score) + ' points')
+or in another words how to do it ?
+First of all in the utils folder create 3 files:
+card.py
+player.py
+game.py
 
-    else:print("No one win, Repeat the game")
-    break
------------------------------------------------------------------------------------------
-class Animal :Each class should have a __str__() method.
-    def __init__(self,animal,breed):
-      self.animal=animal
-      self.breed=breed
-
-    def __str__(self):#its important to print the value not the position of the value.
-        return"{self.breed} {self.animal}".format(self=self)
-
-a=Animal("dog","pomeranian")
-print(a)
---------------------------------------------------------------------------
-Please keep the must-have version separate from the nice-to-have version by using a different branch on GitHub. Please specify that in your README too.
------------------------------------------------------------------------------------------------------------------------------
-1. A simple card
-1.1 Symbol
 In card.py:
-
 Create a class called Symbol with two attributes:
-
 color which is a string.
 icon which is a single character out of this list [♥, ♦, ♣, ♠].
 1.2 Card
 In the same file, create a class Card that inherits from Symbol and add an attribute:
+value which is a string (one of ['A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K'])
+2. A bunch of players
+In player.py create a class Player that contains these attributes:
+cards which is a list of Card. (you will need to import Card from card.py). In a real card game, this is equivalent to the cards that the player has in his hands.
+turn_count which is an int starting a 0.
+number_of_cards which is an int starting at 0.
+history which is a list of Card that will contain all the cards played by the player.
+And some methods:
+play() that will:
+randomly pick a Card in cards.
+Add the Card to the Player's history.
+Print: {PLAYER_NAME} {TURN_COUNT} played: {CARD_NUMBER} {CARD_SYMBOL_ICON}.
+Return the Card.
 
-value which is a string (one of ['A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K']) 
+3. A complete deck
+Create a Deck class that contains:
+
+An attribute cards which is going to contain a list of instances of Card.
+A fill_deck() method that will fill cards with a complete card game (an instance of 'A, 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K' for each possible symbol [♥, ♦, ♣, ♠]). Your deck should contain 52 cards at the end.
+A shuffle() method that will shuffle all the list of cards.
+A distribute() that will take a list of Player as parameter and will distribute the cards evenly between all the players.
+
+4. A board
+In game.py create:
+A class called Board that contains:
+An attribute players that is a list of Player. It will contain all the players that are playing.
+An attribute turn_count that is an int.
+An attribute active_cards that will contain the last card played by each player.
+An attribute history_cards that will contain all the cards played since the start of the game, except for active_cards.
+A method start_game() that will:
+Start the game,
+Fill a Deck,
+Distribute the cards of the Deck to the players.
+Make each Player play() a Card, where each player should only play 1 card per turn, and all players have to play at each turn until they have no cards left.
+At the end of each turn, print:
+The turn count.
+The list of active cards.
+The number of cards in the history_cards.
+In main.py:
+Import everything you need to start the game!
+Start the game. You should only run this file to have the game running.
+
+(Visuals)
+(Contributors) :it is a solo project 
+(Timeline):23/02/2022
+(Personal situation):there are three sitiuations: Great ,complete ,correct 
+Complete :if the person has realized all must-have features.and there is a published GitHub repo available and the game runs until the end without any error.	
+       and  game starts by running python main.py in the terminal.
+Correct:if the code is well typed.	
+           and there is a docstring for every function/method/class.	
+           and all the constraints are respected. 
+Great : if there is an interaction with the user.	
+         and the game is playable with multiple users.       
+
+
+--------------------------------------------------------------------------------------------
